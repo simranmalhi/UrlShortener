@@ -25,7 +25,7 @@ public class Controller1 {
                         "W", "w", "X", "x", "Y", "y", "Z", "z"};
         Random gen = new Random();
         String shortCode;
-        String databaseShortUrl = "";
+        String databaseShortUrl = ""; // will delete this variable -- is currently a placeholder tp prevent errors
         do {
             shortCode = "";
             for(int i = 0; i < 7; i++) { // generates a shortCode/alias 
@@ -40,17 +40,19 @@ public class Controller1 {
                     shortCode += numbers[length];
                 }
             }
-        } while(shortCode.equals(databaseShortUrl) == true); // Create short url until it doesnt equal an already existing short url in database.
-                                                             // Replace while() code with query to database
+        } while(shortCode.equals(databaseShortUrl) == true); // Creates short url until it doesnt equal an already existing short url in database.
+                                                             // code neededL: replace while() code with query to database
                                                              
-        //code: save long url and shortCode in database
+        //code needed: store longUrl and shortCode in database
         
         return new ResponseEntity<String>(shortCode, HttpStatus.OK);
     }
     
     @RequestMapping(value = "/fetch", method = RequestMethod.GET, produces = {MediaType.APPLICATION_JSON_VALUE},consumes = {MediaType.APPLICATION_JSON_VALUE}    )
     public ResponseEntity<String> shortToLong(String shortCode) throws IOException, NoSuchAlgorithmException, InvalidKeySpecException{
-        // code: database finds long url based on shortCode row
+        
+        // code needed: database finds long url based on shortCode row
+        
         String longUrl = ""; // store long url from database in this variable
         return new ResponseEntity<String>(longUrl, HttpStatus.OK);
     }  
