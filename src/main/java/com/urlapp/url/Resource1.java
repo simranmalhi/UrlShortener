@@ -1,4 +1,4 @@
-package newpackage;
+package com.urlapp.url;
 
 
 public class Resource1 {
