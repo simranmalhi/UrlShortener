@@ -6,20 +6,21 @@ import java.security.spec.InvalidKeySpecException;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import java.util.*;
+//import java.util.*;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestBody;
+import newpackage.Resource1;
 
 @RestController
 @RequestMapping("/api")
 public class Controller1 {
-    @RequestMapping(value = "/resource", method = RequestMethod.DELETE, produces = {MediaType.APPLICATION_JSON_VALUE},consumes = {MediaType.APPLICATION_JSON_VALUE}    )
-    public ResponseEntity<DeleteResponse> deleteResources(@RequestBody ResourceRequest resourceRequest) throws IOException, NoSuchAlgorithmException, InvalidKeySpecException{
-        return new ResponseEntity<DeleteResponse>(client.deleteResources(resourceRequest), HttpStatus.OK);
+    @RequestMapping(value = "/resource", method = RequestMethod.POST, produces = {MediaType.APPLICATION_JSON_VALUE},consumes = {MediaType.APPLICATION_JSON_VALUE}    )
+    public ResponseEntity<String> TestMethod(@RequestBody Resource1 resource) throws IOException, NoSuchAlgorithmException, InvalidKeySpecException{
+        return new ResponseEntity<String>(resource.longUrl, HttpStatus.OK);
     }
-    int[] numbers = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9};
+    /*int[] numbers = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9};
     String[] letters = {"A", "a", "B", "b", "C", "c", "D", "d", "E", "e", "F",
                         "f", "G", "g", "H", "h", "I", "i", "J", "j", "K", "k",
                         "L", "l", "M", "m", "N", "n", "O", "o", "P", "p", "Q",
@@ -54,6 +55,6 @@ public class Controller1 {
     @RequestMapping("/fetch") // or @RequestMapping(method = RequestMethod.GET)
     public void shortToLong() {
         
-    }
+    } */
     
 }
