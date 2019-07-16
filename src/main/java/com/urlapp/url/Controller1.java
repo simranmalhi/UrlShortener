@@ -29,9 +29,9 @@ public class Controller1 {
         do {
             shortCode = "";
             for(int i = 0; i < 7; i++) { // generates a shortCode/alias 
-                int array = gen.nextInt(2); 
+                int arrayValue = gen.nextInt(2); 
                 int length;
-                if(array == 0) { // a letter will be added to the shortCode
+                if(arrayValue == 0) { // a letter will be added to the shortCode
                     length = gen.nextInt(letters.length);
                     shortCode += letters[length];
                 }
