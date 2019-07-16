@@ -6,7 +6,7 @@ import java.security.spec.InvalidKeySpecException;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-//import java.util.*;
+import java.util.*;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -17,14 +17,13 @@ import org.springframework.web.bind.annotation.RequestBody;
 public class Controller1 {
     @RequestMapping(value = "/create", method = RequestMethod.POST, produces = {MediaType.APPLICATION_JSON_VALUE},consumes = {MediaType.APPLICATION_JSON_VALUE}    )
     public ResponseEntity<String> longToShort(@RequestBody Resource1 resource) throws IOException, NoSuchAlgorithmException, InvalidKeySpecException{
-        // logic goes here
         int[] numbers = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9};
         String[] letters = {"A", "a", "B", "b", "C", "c", "D", "d", "E", "e", "F",
                         "f", "G", "g", "H", "h", "I", "i", "J", "j", "K", "k",
                         "L", "l", "M", "m", "N", "n", "O", "o", "P", "p", "Q",
                         "q", "R", "r", "S", "s", "T", "t", "U", "u", "V", "v",
                         "W", "w", "X", "x", "Y", "y", "Z", "z"};
-        String shortUrl;
+        String shortCode;
         Random gen = new Random();
         do {
             shortCode = "";
