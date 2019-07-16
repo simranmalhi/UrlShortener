@@ -1,13 +1,24 @@
 package com.urlapp.url;
 
+import java.io.IOException;
+import java.security.NoSuchAlgorithmException;
+import java.security.spec.InvalidKeySpecException;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import java.util.*;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.RequestBody;
 
 @RestController
 @RequestMapping("/api")
 public class Controller1 {
+    @RequestMapping(value = "/resource", method = RequestMethod.DELETE, produces = {MediaType.APPLICATION_JSON_VALUE},consumes = {MediaType.APPLICATION_JSON_VALUE}    )
+    public ResponseEntity<DeleteResponse> deleteResources(@RequestBody ResourceRequest resourceRequest) throws IOException, NoSuchAlgorithmException, InvalidKeySpecException{
+        return new ResponseEntity<DeleteResponse>(client.deleteResources(resourceRequest), HttpStatus.OK);
+    }
     int[] numbers = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9};
     String[] letters = {"A", "a", "B", "b", "C", "c", "D", "d", "E", "e", "F",
                         "f", "G", "g", "H", "h", "I", "i", "J", "j", "K", "k",
