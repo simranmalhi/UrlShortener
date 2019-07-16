@@ -15,39 +15,43 @@ import org.springframework.web.bind.annotation.RequestBody;
 @RestController
 @RequestMapping("/api")
 public class Controller1 {
-    @RequestMapping(value = "/create", method = RequestMethod.POST, produces = {MediaType.APPLICATION_JSON_VALUE},consumes = {MediaType.APPLICATION_JSON_VALUE}    )
-    public ResponseEntity<String> longToShort(@RequestBody Resource1 resource) throws IOException, NoSuchAlgorithmException, InvalidKeySpecException{
+    @RequestMapping(value = "/create", method = RequestMethod.GET, produces = {MediaType.APPLICATION_JSON_VALUE},consumes = {MediaType.APPLICATION_JSON_VALUE}    )
+    public ResponseEntity<String> longToShort(@RequestBody String longUrl) throws IOException, NoSuchAlgorithmException, InvalidKeySpecException{
         int[] numbers = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9};
         String[] letters = {"A", "a", "B", "b", "C", "c", "D", "d", "E", "e", "F",
                         "f", "G", "g", "H", "h", "I", "i", "J", "j", "K", "k",
                         "L", "l", "M", "m", "N", "n", "O", "o", "P", "p", "Q",
                         "q", "R", "r", "S", "s", "T", "t", "U", "u", "V", "v",
                         "W", "w", "X", "x", "Y", "y", "Z", "z"};
-        String shortCode;
         Random gen = new Random();
+        String shortCode;
+        String databaseShortUrl = "";
         do {
             shortCode = "";
-            for(int i = 0; i < 7; i++) {
-                int array = gen.nextInt(2);
+            for(int i = 0; i < 7; i++) { // generates a shortCode/alias 
+                int array = gen.nextInt(2); 
                 int length;
-                if(array == 0) { 
+                if(array == 0) { // a letter will be added to the shortCode
                     length = gen.nextInt(letters.length);
                     shortCode += letters[length];
                 }
-                else {
+                else { // a number will be added to the shortCode
                     length = gen.nextInt(numbers.length);
                     shortCode += numbers[length];
                 }
             }
-        } while(shortCode.equals(databaseShortUrl) == true); // Create short url until it doesnt equal
-                                                             // an already existing short url.
-                                                             // Replace while code with query.
-        //code: save long url and short url in database
-        return new ResponseEntity<String>(resource.shortUrl, HttpStatus.OK);
-    }
-    @RequestMapping(value = "/fetch", method = RequestMethod.GET, produces = {MediaType.APPLICATION_JSON_VALUE},consumes = {MediaType.APPLICATION_JSON_VALUE}    )
-    public ResponseEntity<String> TestMethod2(String shortCode) throws IOException, NoSuchAlgorithmException, InvalidKeySpecException{
-        // logic goes here
+        } while(shortCode.equals(databaseShortUrl) == true); // Create short url until it doesnt equal an already existing short url in database.
+                                                             // Replace while() code with query to database
+                                                             
+        //code: save long url and shortCode in database
+        
         return new ResponseEntity<String>(shortCode, HttpStatus.OK);
+    }
+    
+    @RequestMapping(value = "/fetch", method = RequestMethod.GET, produces = {MediaType.APPLICATION_JSON_VALUE},consumes = {MediaType.APPLICATION_JSON_VALUE}    )
+    public ResponseEntity<String> shortToLong(String shortCode) throws IOException, NoSuchAlgorithmException, InvalidKeySpecException{
+        // code: database finds long url based on shortCode row
+        String longUrl = ""; // store long url from database in this variable
+        return new ResponseEntity<String>(longUrl, HttpStatus.OK);
     }  
 }
