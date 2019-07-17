@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 @RestController
 @RequestMapping("/api")
 public class Controller1 {
-    @RequestMapping(value = "/create", method = RequestMethod.GET, produces = {MediaType.APPLICATION_JSON_VALUE},consumes = {MediaType.APPLICATION_JSON_VALUE}    )
+    @RequestMapping(value = "/create", method = RequestMethod.POST, produces = {MediaType.APPLICATION_JSON_VALUE},consumes = {MediaType.APPLICATION_JSON_VALUE}    )
     public ResponseEntity<String> longToShort(@RequestBody String longUrl) throws IOException, NoSuchAlgorithmException, InvalidKeySpecException{
         int[] numbers = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9};
         String[] letters = {"A", "a", "B", "b", "C", "c", "D", "d", "E", "e", "F",
@@ -25,7 +25,7 @@ public class Controller1 {
                         "W", "w", "X", "x", "Y", "y", "Z", "z"};
         Random gen = new Random();
         String shortCode;
-        String databaseShortUrl = ""; // will delete this variable -- is currently a placeholder tp prevent errors
+        String databaseShortUrl = "u"; // will delete this variable -- is currently a placeholder tp prevent errors
         do {
             shortCode = "";
             for(int i = 0; i < 7; i++) { // generates a shortCode/alias 
