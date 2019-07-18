@@ -5,10 +5,13 @@
  */
 package com.urlshortener.service;
 
+import java.util.List;
+
 /**
  *
  * @author Simi
  */
-public class ShortUrlService {
-    
+public interface ShortUrlService {
+    public String getUrl(String shortCode); // fetch long url
+    public String saveUrl(String longUrl); 
 }
