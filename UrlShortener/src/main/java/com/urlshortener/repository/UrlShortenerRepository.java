@@ -12,5 +12,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface UrlShortenerRepository extends JpaRepository<ShortUrlTable, Long> {
-    List<ShortUrlTable> findByShortCode(long teamId);
+    ShortUrlTable findByShortCode(String shortCode);
 }

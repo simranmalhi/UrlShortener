@@ -1,0 +1,6 @@
+com\urlshortener\api\UrlShortener.class
+com\urlshortener\repository\UrlShortenerRepository.class
+com\urlshortener\service\ShortUrlServiceImplementation.class
+com\urlshortener\api\ApiController.class
+com\urlshortener\service\ShortUrlService.class
+com\urlshortener\models\ShortUrlTable.class

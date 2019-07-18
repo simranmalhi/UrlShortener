@@ -5,6 +5,7 @@
  */
 package com.urlshortener.service;
 
+import com.urlshortener.repository.UrlShortenerRepository;
 import java.util.List;
 
 /**
@@ -12,9 +13,11 @@ import java.util.List;
  * @author Simi
  */
 public class ShortUrlServiceImplementation implements ShortUrlService{
+    UrlShortenerRepository repository;
+    
     public String getUrl(String shortCode) {
-        
-        return null;
+        String longUrl = repository.findByShortCode(shortCode).getlongUrl();
+        return longUrl;
     }
     public String saveUrl(String longUrl) {
         /*
