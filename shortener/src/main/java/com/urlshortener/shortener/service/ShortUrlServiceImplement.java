@@ -1,6 +1,8 @@
 
 package com.urlshortener.shortener.service;
 
+import com.urlshortener.shortener.json.LongUrl;
+import com.urlshortener.shortener.json.ShortCode;
 import com.urlshortener.shortener.models.ShortUrlTable;
 import com.urlshortener.shortener.repository.UrlShortenerRepository;
 import java.util.Date;
@@ -15,18 +17,20 @@ public class ShortUrlServiceImplement implements ShortUrlService{
     UrlShortenerRepository repository;
 
     @Override
-    public String getUrl(String shortCode) {        
+    public LongUrl getUrl(String shortCode) {        
         ShortUrlTable st = repository.findFirstByShortCode(shortCode);
-        if(st ==  null) {
-            return "";
+        if(st == null) {
+            return new LongUrl("error: short code does not exist");
         }
-        return st.getlongUrl();
+        LongUrl obj = new LongUrl(st.getlongUrl());
+        return obj;
     }
     @Override
-    public String saveUrl(String longUrl) {
+    public ShortCode saveUrl(String longUrl) {
         String shortCode = getShortCode();
         repository.save(toEntity(longUrl, shortCode));
-        return shortCode;
+        ShortCode obj = new ShortCode(shortCode);
+        return obj;
     }
     
     private String getShortCode(){
@@ -35,6 +39,7 @@ public class ShortUrlServiceImplement implements ShortUrlService{
         //till you generated an unique code
         Random gen = new Random();
         String sc = "";
+        String tempUrl = "notempty";
         boolean isUnique = false;
         int[] numbers = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9};
         String[] letters = {"A", "a", "B", "b", "C", "c", "D", "d", "E", "e", "F",
@@ -52,12 +57,17 @@ public class ShortUrlServiceImplement implements ShortUrlService{
                 else { // a number will be added to the shortCode
                     sc += numbers[gen.nextInt(numbers.length)];
                 } 
-                // makes call to database to see if shortCode exists
-                String tempUrl = getUrl(sc);
-                if(tempUrl.isEmpty() == true) { // if not then exit loop
-                    isUnique = true;
-                }
+            }    
+            
+            ShortUrlTable st = repository.findFirstByShortCode(sc);
+            if(st ==  null) { // then sc is unique
+                tempUrl = "";
             }
+            
+            if(tempUrl.isEmpty() == true) { // exits while loop with unique sc
+                 isUnique = true;
+            }
+            
         }while(isUnique == false);
         
         return sc;

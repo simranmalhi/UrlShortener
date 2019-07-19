@@ -14,6 +14,11 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestBody;
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+import java.util.Map;
+import javax.persistence.Entity;
 import org.springframework.beans.factory.annotation.Autowired;
 
 
@@ -24,12 +29,12 @@ public class ApiController {
     ShortUrlService service;
     
     @RequestMapping(value = "/create", method = RequestMethod.POST, produces = {MediaType.APPLICATION_JSON_VALUE},consumes = {MediaType.APPLICATION_JSON_VALUE}    )
-    public ResponseEntity<String> longToShort(@RequestBody String longUrl) throws IOException, NoSuchAlgorithmException, InvalidKeySpecException, SQLException, ClassNotFoundException{
-        return new ResponseEntity<String>(service.saveUrl(longUrl), HttpStatus.OK);
-    }
+    public ResponseEntity<Object> longToShort(@RequestBody String longUrl) throws IOException, NoSuchAlgorithmException, InvalidKeySpecException, SQLException, ClassNotFoundException{
+        return new ResponseEntity<Object>(service.saveUrl(longUrl), HttpStatus.OK);
+    } 
     
     @RequestMapping(value = "/fetch", method = RequestMethod.GET, produces = {MediaType.APPLICATION_JSON_VALUE},consumes = {MediaType.APPLICATION_JSON_VALUE}    )
-    public ResponseEntity<String> shortToLong(String shortCode) throws IOException, NoSuchAlgorithmException, InvalidKeySpecException{
-        return new ResponseEntity<String>(service.getUrl(shortCode), HttpStatus.OK);
+    public ResponseEntity<Object> shortToLong(String shortCode) throws IOException, NoSuchAlgorithmException, InvalidKeySpecException{
+        return new ResponseEntity<Object>(service.getUrl(shortCode), HttpStatus.OK);
     }  
 }
