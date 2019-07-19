@@ -1,16 +1,11 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package com.urlshortener.shortener.service;
 
+import com.urlshortener.shortener.json.LongUrl;
+import com.urlshortener.shortener.json.ShortCode;
 
-/**
- *
- * @author Simi
- */
+
 public interface ShortUrlService {
-     String getUrl(String shortCode); // fetch long url
-     String saveUrl(String longUrl); 
+    LongUrl getUrl(String shortCode); // fetch long url
+    ShortCode saveUrl(String longUrl); 
 }
