@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package com.urlshortener.shortener.models;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
@@ -18,6 +14,7 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
+
 
 @Entity 
 @Table (name = "ShortUrlTable")
