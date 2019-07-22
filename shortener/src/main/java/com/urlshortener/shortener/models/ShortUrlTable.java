@@ -1,4 +1,3 @@
-
 package com.urlshortener.shortener.models;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
@@ -15,7 +14,6 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
-
 @Entity 
 @Table (name = "ShortUrlTable")
 @EntityListeners(AuditingEntityListener.class)
@@ -31,12 +29,10 @@ public class ShortUrlTable implements Serializable {
     @Column(name = "short_code", length=7)
     private String shortCode;
     
-    //@Column(name = "createdDate")
     @Column(name = "created_date", columnDefinition="DATETIME")
     @Temporal(TemporalType.TIMESTAMP)
     private Date createdDate;
     
-    //Getters & Setters
     public String getlongUrl() {
         return longUrl;
     }

@@ -1,6 +1,4 @@
-
 package com.urlshortener.shortener.json;
-
 
 public class LongUrl {
     private String longUrl;

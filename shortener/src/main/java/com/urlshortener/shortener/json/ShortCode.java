@@ -1,6 +1,4 @@
-
 package com.urlshortener.shortener.json;
-
 
 public class ShortCode {
     private String shortCode;
