@@ -14,11 +14,6 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestBody;
 import java.sql.*;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-import java.util.Map;
-import javax.persistence.Entity;
 import org.springframework.beans.factory.annotation.Autowired;
 
 
@@ -30,11 +25,14 @@ public class ApiController {
     
     @RequestMapping(value = "/create", method = RequestMethod.POST, produces = {MediaType.APPLICATION_JSON_VALUE},consumes = {MediaType.APPLICATION_JSON_VALUE}    )
     public ResponseEntity<Object> longToShort(@RequestBody String longUrl) throws IOException, NoSuchAlgorithmException, InvalidKeySpecException, SQLException, ClassNotFoundException{
-        return new ResponseEntity<Object>(service.saveUrl(longUrl), HttpStatus.OK);
+        return new ResponseEntity<Object>(service.saveUrl(longUrl), HttpStatus.CREATED);
     } 
     
     @RequestMapping(value = "/fetch", method = RequestMethod.GET, produces = {MediaType.APPLICATION_JSON_VALUE},consumes = {MediaType.APPLICATION_JSON_VALUE}    )
     public ResponseEntity<Object> shortToLong(String shortCode) throws IOException, NoSuchAlgorithmException, InvalidKeySpecException{
+        if(service.getUrl(shortCode).getLongUrl().equals("error: short code does not exist")) {
+            return new ResponseEntity<Object>(service.getUrl(shortCode), HttpStatus.NOT_FOUND);
+        }
         return new ResponseEntity<Object>(service.getUrl(shortCode), HttpStatus.OK);
     }  
 }
