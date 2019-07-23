@@ -14,6 +14,14 @@ public class ShortUrlServiceImplement implements ShortUrlService{
     @Autowired
     UrlShortenerRepository repository;
 
+    Random gen = new Random();
+    private int[] numbers = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9};
+    private String[] letters = {"A", "a", "B", "b", "C", "c", "D", "d", "E", "e", "F",
+                            "f", "G", "g", "H", "h", "I", "i", "J", "j", "K", "k",
+                            "L", "l", "M", "m", "N", "n", "O", "o", "P", "p", "Q",
+                            "q", "R", "r", "S", "s", "T", "t", "U", "u", "V", "v",
+                            "W", "w", "X", "x", "Y", "y", "Z", "z"};
+        
     @Override
     public LongUrl getUrl(String shortCode) {        
         ShortUrlTable st = repository.findFirstByShortCode(shortCode);
@@ -32,16 +40,9 @@ public class ShortUrlServiceImplement implements ShortUrlService{
     }
     
     private String getShortCode(){
-        Random gen = new Random();
         String sc;
-        String tempUrl = "not_empty";
         boolean isUnique = false;
-        int[] numbers = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9};
-        String[] letters = {"A", "a", "B", "b", "C", "c", "D", "d", "E", "e", "F",
-                            "f", "G", "g", "H", "h", "I", "i", "J", "j", "K", "k",
-                            "L", "l", "M", "m", "N", "n", "O", "o", "P", "p", "Q",
-                            "q", "R", "r", "S", "s", "T", "t", "U", "u", "V", "v",
-                            "W", "w", "X", "x", "Y", "y", "Z", "z"};
+        
         do {
             sc = "";
             for(int i = 0; i < 7; i++) { // generates a shortCode/alias 
@@ -56,13 +57,8 @@ public class ShortUrlServiceImplement implements ShortUrlService{
             
             ShortUrlTable st = repository.findFirstByShortCode(sc);
             if(st ==  null) { // then sc is unique
-                tempUrl = "";
+                isUnique = true;
             }
-            
-            if(tempUrl.isEmpty() == true) { // exits while loop (with unique sc)
-                 isUnique = true;
-            }
-            
         }while(isUnique == false);
         
         return sc;
