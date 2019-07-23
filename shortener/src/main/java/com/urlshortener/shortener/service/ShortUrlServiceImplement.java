@@ -7,9 +7,11 @@ import com.urlshortener.shortener.repository.UrlShortenerRepository;
 import java.util.Date;
 import java.util.Random;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
+//import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
-@Component
+//@Component
+@Service
 public class ShortUrlServiceImplement implements ShortUrlService{
     @Autowired
     UrlShortenerRepository repository;
