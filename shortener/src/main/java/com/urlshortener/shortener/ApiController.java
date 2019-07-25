@@ -19,6 +19,11 @@ public class ApiController {
     @Autowired 
     ShortUrlService service;
     
+    @RequestMapping(value = "/test", method = RequestMethod.GET)
+    public String test() {
+        return "Hello World!";
+    }
+    
     @RequestMapping(value = "/create", method = RequestMethod.POST, produces = {MediaType.APPLICATION_JSON_VALUE},consumes = {MediaType.APPLICATION_JSON_VALUE})
     public ResponseEntity<Object> longToShort(String longUrl) throws IOException, NoSuchAlgorithmException, InvalidKeySpecException, SQLException, ClassNotFoundException{
         return new ResponseEntity<Object>(service.saveUrl(longUrl), HttpStatus.CREATED);
