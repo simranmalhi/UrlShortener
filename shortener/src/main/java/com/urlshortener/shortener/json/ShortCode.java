@@ -1,9 +1,7 @@
-
 package com.urlshortener.shortener.json;
 
-
 public class ShortCode {
-    private static String shortCode;
+    private String shortCode;
 
     public ShortCode(String shortCode) {
         this.shortCode = shortCode;

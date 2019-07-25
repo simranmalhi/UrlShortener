@@ -1,9 +1,7 @@
-
 package com.urlshortener.shortener.json;
 
-
 public class LongUrl {
-    private static String longUrl;
+    private String longUrl;
     
     public LongUrl(String longUrl) {
         this.longUrl = longUrl;
